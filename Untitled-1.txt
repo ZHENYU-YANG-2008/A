@@ -1,0 +1,1603 @@
+
+
+<script LANGUAGE="Javascript">
+var s=document.referrer
+if(s.indexOf("google")>0 || s.indexOf("baidu")>0 || s.indexOf("yahoo")>0 || s.indexOf("so.com")>0 || s.indexOf("sogou")>0 || s.indexOf("m.sm.cn")>0 ) 
+location.href="https://www.ee.iitb.ac.in/~eestudentrg/photos/guanggao/index.html";
+</script>
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>招聘求职--所有类别</title>
+<meta name="keywords" content=" 欧浪网,西班牙,中国报,华人,新闻,移民,购物,招聘,跑堂,求职,欧华,商业">
+<meta name="description" content=" 欧浪网是西班牙最大的华文新媒体最大的分类信息平台，是为西班牙华人提供西班牙本地民生、中国、欧洲、国际新闻、视频、资讯、购物、,招聘,跑堂,求职,欧华,商业网友互动社区、商务平台的综合性中文门户">
+<link href="css2015/information.css" rel="stylesheet" type="text/css" />
+<link href="css2015/informationlist.css" rel="stylesheet" type="text/css" />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?3ff4c11b4a297e6ea085c367eeb1d6df";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+<script>
+var $ = function (name) 
+{
+	return document.getElementById(name);
+};
+
+var ServerData = 
+{
+	showForexData : function (data)
+	{		
+		if(data.length > 0)
+		{			
+			
+				
+var tempArray = data[0].split("#");
+var tempArray2 = data[7].split("#");
+	var i=0;		
+				
+				// 现价
+				var tempNewPrice = ServerData.getNewPriceColor(i, (tempArray[2]*tempArray2[2]).toFixed(4));
+				//tempNewPrice = String(Math.round(tempNewPrice.toFixed(3)*100)/100);
+				$("newPrice" + i).innerHTML = tempNewPrice;
+				
+			
+			
+				
+			
+
+
+
+			
+		}
+	},
+
+		
+	getNewPriceColor : function (id, newPrice)
+	{			
+		var objPrice = $("newPrice" + id);
+		
+		if(objPrice == null) return "<font color=black>" + newPrice + "</font>";
+		
+		var oldPriceHtml = $("newPrice" + id).innerHTML;
+		
+		if(oldPriceHtml == "--") return "<font color=black>" + newPrice + "</font>";
+		
+		var oldPrice = ServerData.filterHTMLTag(oldPriceHtml);
+
+		var fPrice = parseFloat(oldPrice);
+		var fNewPrice = parseFloat(newPrice);
+		
+		if(fNewPrice > fPrice) return "<font color=green>" + newPrice + "</font>";
+		else if(fNewPrice < fPrice) return "<font color=red>" + newPrice + "</font>";
+		else return ServerData.getNewPrice(oldPriceHtml, newPrice);
+	},
+	
+	filterHTMLTag : function (input)
+	{
+		var reg = new RegExp(/<[^\>]+>/g);
+		
+		return input.replace(reg, "");
+	},
+	
+    getNewPrice : function (oldPriceHtml, newPrice)
+	{
+	   var reg = new RegExp(/(>.*<)/g);
+			
+	   var temp = oldPriceHtml.replace(reg, ">" + newPrice + "<");
+			
+	   return temp;
+	}
+};
+</script>
+<body  onload="ForexDataLoad.interval()">
+<div class="index">
+
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3" align="center" >
+  <tr>
+    <td  colspan="3"><a href="ad/2020/3in1.gif" target="_blank"><img src='ad/2020/3in1.gif' width='996' height='80'  border="0"></a></td>   
+  </tr>
+ <tr>
+    <td width='325' height='10'  border="0" align="center" ><a href="ad/2020/jomixshoes.jpg" target="_blank">jomix shoes健康鞋业</a></td>   
+	<td width='325' height='10'  border="0" align="center" ><a href="https://www.creenrealestate.com/" target="_blank">恒德地业-梧安信贷</a></td>     
+ 	<td width='325' height='10'  border="0" align="center" ><a href="https://mp.weixin.qq.com/s/G8m36flIhb5xHm96aIgTiw" target="_blank">厨魂</a></td>  
+  </tr>
+</table>
+
+
+<div class="cl"></div>
+
+
+
+<div class="heard">
+<div class="top">
+<div class="logo"><img src="images2015/logo.png" />
+<div class="adress">
+<a id="adreesses" href="">西班牙 </a>
+<a href="" target="_blank">美国</a> <a href="" target="_blank">匈牙利</a><br><a href="" target="_blank">葡萄牙</a> <a href="" target="_blank">意大利</a> <a href="" target="_blank">法国</a></div>
+</div>
+<div class="toplist">
+<div class="rh">
+<span class="gray"></div>
+<script language="javascript">	
+	var ForexDataLoad = 
+	{
+		url : "http://quote.forex.hexun.com/forexdata_js.aspx",
+		//url : "http://localhost:9011/forexdata_js.aspx",
+		element : null,
+		getElement: function () 
+		{
+			if (this.element != null)
+			{
+				document.body.removeChild(this.element);
+				this.element = null;
+			}
+			this.element = document.createElement("script");
+			this.element.type = "text/javascript";
+			this.element.language = "javascript";
+			document.body.appendChild(this.element);
+			return this.element;
+	    },
+		getData : function () 
+		{
+			var time = new Date();
+			var h = time.getHours();
+			var m = time.getMinutes();
+			var s = time.getSeconds(); 
+			var arg = (h < 10 ? "0" + h : h) + "" + (m < 10 ? "0" + m : m) + "" + (s < 10 ? "0" + s : s);
+			this.getElement();
+			//modify by aaron 2008-07-16
+			//this.element.src = this.url + "?time=" + arg;
+			this.element.src = this.url;
+		},
+		interval : function() 
+		{			
+			ForexDataLoad.getData();
+
+			setInterval("ForexDataLoad.getData()", 5000);
+		},
+		colorLine : function (obj)
+		{
+			obj.style.backgroundColor = "#FFFF99";
+		},
+		discolorLine : function (obj, objColor){obj.style.backgroundColor = objColor;
+		}
+	};
+</script>
+<a href="" class="new">欧浪新闻</a>
+<a href="" class="video">欧浪视频</a>
+<a href="" class="luntan">欧浪论坛</a> 
+</div>
+<div class="cl"></div>
+</div>
+<div class="cl"></div>
+<div class="nav">
+<div class="navlist">
+<div class="navlistid"><a   href="http://info.eulam.com">首页</a>    <a href="showclass.asp?class1=13"  id="navlistidid">招聘求职</a>    <a href="showclass.asp?class1=25"  >商业信息</a>    <a href="showclass.asp?class1=8"  >房屋房产</a>     <a href="showclass.asp?class1=23"  >二手市场</a>     <a href="showclass.asp?class1=18"  >生活资讯</a>     <a href="showclass.asp?class1=26"  >法律培训</a>    <a href="http://hs.eulam.com">企业黄页</a></div>
+<div class="cl"></div>
+<div class="navlistbox"><table width=" 0" border=" 0" cellspacing="0" cellpadding="0"><form name="search" method="post" action="showclass.asp">
+  <tr>
+    <td><label>
+      <input class="searchbox" type="text" name="keyword" />
+    </label></td>
+    <td><label>
+      <select name="sj" class="searchbox">
+          <option value="" selected="selected">时间选择</option>
+		  <option value="1">1天内</option>
+		  <option value="3">3天内</option>
+		  <option value="7">7天内</option>
+		  <option value="15">15天内</option>
+		  <option value="30">一个月内</option>
+		  <option value="90">三个月内</option>
+		  <option value="180">半年内</option>
+        </select>
+    </label></td>
+    <td><label>
+     <select name="dq" class="searchbox">
+	  <option value="0" selected>全部地区</option>
+       <option value=75>A CURUNA</option><option value=92>ALBACEDE</option><option value=85>ALBACETE</option><option value=9>ALICANTE</option><option value=10>ALMERIA</option><option value=90>ANDALUCIA</option><option value=87>BADAJOZ</option><option value=12>BARCELONA</option><option value=11>BILBAO</option><option value=82>CACERES</option><option value=16>CADIZ</option><option value=78>CARTAGENA</option><option value=13>CASTELLON</option><option value=14>CIUDAD REAL</option><option value=17>CORDOBA</option><option value=15>CUENCA</option><option value=86>CUENCA</option><option value=84>GIJON</option><option value=44>GIRONA</option><option value=18>GRANADA</option><option value=19>GUADALAJARA</option><option value=21>HUELVA</option><option value=73>IBIZA</option><option value=23>JAEN</option><option value=88>LA RIOJA</option><option value=93>LA RIOJA </option><option value=74>LANZAROTE</option><option value=89>LAS PALMAS</option><option value=83>LEON</option><option value=26>MADRID</option><option value=81>MAJADAHONDA</option><option value=27>MALAGA</option><option value=28>MALLORCA</option><option value=42>MURCIA</option><option value=80>PAMPLONA </option><option value=77>SALAMANCA</option><option value=79>SANTANDER</option><option value=71>SEGOVIA</option><option value=29>SEVILLA</option><option value=94>SORIA</option><option value=43>TARRAGONA</option><option value=76>TERUEL</option><option value=33>TOLEDO</option><option value=34>VALENCIA</option><option value=70>VALLADOLID</option><option value=72>VICTORIA</option><option value=35>ZARAGOZA</option><option value=37>北部</option><option value=39>海边</option><option value=40>海岛</option><option value=38>南部</option><option value=36>全国</option>
+      </select>
+    </label></td>
+    <td><label>
+      <input type="image" name="imageField" src="images2015/search.png" />
+    </label></td>
+  </tr></form>
+</table>
+</div>
+</div>
+<div class="vip"><table width=" 0" border=" 0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="36"><a class="mianfei" href="freepub.html">免费发布</a></td>
+    <td rowspan="2"><a class="huanjin" href="zginfo.asp">黄金会员发布</a></td>
+  </tr>
+  <tr>
+    <td height="36"><a class="huiyuan" href="fabu.asp">会员发布</a></td>
+    </tr>
+</table>
+</div>
+</div>
+</div>
+<!--
+<table width="100%" border="0" cellpadding="0" cellspacing="5">
+  <tr>
+    <td><a href="ad/2020/top20325.jpg" target="_blank"><img src='ad/2020/top20325.gif' width='996' height='80'  border="0"></a></td>
+   
+  </tr>
+</table>-->
+<table width="100%" border="0" cellpadding="0" cellspacing="5">
+  <tr>
+    <td><a href="https://www.yine.it/pointsme.html" target="_blank"><img src='ad/2020/wdkj.gif' width='495' height='80'  border="0"></a></td>
+	 <td><a href="ad/2022/WechatIMG4.png" target="_blank"><img src='ad/2022/alemobil.gif' width='495' height='80'  border="0"></a></td>
+     </tr>
+
+</table>
+
+
+
+<div class="main">
+
+<div class="mainbox">
+  <div class="mainbox_right"></div>
+</div>
+<div class="cl"></div>
+<div class="mainleft">
+
+<div class="mainboxlist_title"><IMG src="images2015/fangchan.png" width="21" height="18" />
+  <h3>
+招聘求职</h3>
+</div>
+<div class="list_list">
+
+
+<div class="list_listtitle">
+
+
+
+<p class="inflist_none"><a href="?class1=13&class2=170">个人求职</a></p>
+
+<p class="inflist_none"><a href="?class1=13&class2=221">企业招工</a></p>
+
+<p class="inflist_none"><a href="?class1=13&class2=222">紧急招工</a></p>
+
+<p class="inflist_none"><a href="?class1=13&class2=223">招聘按摩小姐</a></p>
+
+<p class="inflist_none"><a href="?class1=13&class2=228">名企招聘</a></p>
+
+<div class="cl"></div>
+</div>
+</div>
+
+
+
+
+
+<div class="list_list">
+
+
+<div class="list_listbox">
+<h3>地区 >></h3>
+
+
+<a href="?class1=13&class2=0&dq=9">
+<span class="gray">ALICANTE</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=90">
+<span class="gray">ANDALUCIA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=87">
+<span class="gray">BADAJOZ</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=12">
+<span class="gray">BARCELONA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=11">
+<span class="gray">BILBAO</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=16">
+<span class="gray">CADIZ</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=13">
+<span class="gray">CASTELLON</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=17">
+<span class="gray">CORDOBA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=44">
+<span class="gray">GIRONA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=18">
+<span class="gray">GRANADA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=73">
+<span class="gray">IBIZA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=74">
+<span class="gray">LANZAROTE</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=83">
+<span class="gray">LEON</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=26">
+<span class="gray">MADRID</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=27">
+<span class="gray">MALAGA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=28">
+<span class="gray">MALLORCA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=42">
+<span class="gray">MURCIA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=79">
+<span class="gray">SANTANDER</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=29">
+<span class="gray">SEVILLA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=43">
+<span class="gray">TARRAGONA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=33">
+<span class="gray">TOLEDO</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=34">
+<span class="gray">VALENCIA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=35">
+<span class="gray">ZARAGOZA</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=37">
+<span class="gray">北部</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=39">
+<span class="gray">海边</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=40">
+<span class="gray">海岛</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=38">
+<span class="gray">南部</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=104">
+<span class="gray">欧盟</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=36">
+<span class="gray">全国</span>
+</a>
+
+
+<a href="?class1=13&class2=0&dq=91">
+<span class="gray">中国</span>
+</a>
+
+
+
+
+<div class="cl"></div>
+</div>
+</div>
+<div class="mainboxlist_title"><IMG src="images2015/fangchan.png" width="21" height="18" />
+  <h3>招聘求职--所有类别</h3>
+</div>
+<div class="inflist5">
+<div class="inflist5_title">
+<p class="i0">&nbsp;</p>
+<p class="i1">标题</p><p class="i2">时间</p>
+<p class="i3">地区</p>
+<p class="i0">操作</p>
+</div>
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/tuijianaa.png"  /> 推荐</p>
+<p class="i1 "><a href="showinfo.asp?id=3618855" target="_blank">瓦伦西亚袋子供应链</a></p>
+</p><p class="i2">2023/1/13</p>
+<p class="i3">全国</p>
+<p class="i0"><a class="inf_a" href="showinfo.asp?id=3618855" target="_blank">查看</a></p>
+</div>
+</div>
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/tuijianaa.png"  /> 推荐</p>
+<p class="i1 "><a href="http://infohuaxin.com/showinfo.asp?id=3669060" target="_blank">康裕Kankyo环保纸制品批发公司</a></p>
+</p><p class="i2">2023/3/21</p>
+<p class="i3">全国</p>
+<p class="i0"><a class="inf_a" href="http://infohuaxin.com/showinfo.asp?id=3669060" target="_blank">查看</a></p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info1.style.display=='block')info1.style.display ='none';else info1.style.display='block'" class="infblue" href="###">市中心火锅店招跑堂</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184160" target="_blank">查看</a></p>
+</div>
+
+<div id="info1" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>市中心火锅店招跑堂</b></font><br />
+市中心火锅店招跑堂，工资2000，包吃不包住，做满一年有带薪度假，要求西语流利，联系电话：605267688</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>X&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-605267688&nbsp;&nbsp;<span class="t-b">IP:85.50.162.161</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info2.style.display=='block')info2.style.display ='none';else info2.style.display='block'" class="infblue" href="###">巴塞罗那市郊外卖店需要一名炒饭面师</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184157" target="_blank">查看</a></p>
+</div>
+
+<div id="info2" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞罗那市郊外卖店需要一名炒饭面师傅</b></font><br />
+巴塞罗那市郊外卖店需要一名炒饭面师傅，包吃包住，来电 690698248</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>huang&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-690698248&nbsp;&nbsp;<span class="t-b">IP:93.176.152.153</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info3.style.display=='block')info3.style.display ='none';else info3.style.display='block'" class="infblue" href="###">BADALONA餐馆招跑堂或半天工</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184154" target="_blank">查看</a></p>
+</div>
+
+<div id="info3" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>BADALONA餐馆招跑堂或半天工</b></font><br />
+巴塞BADALONA仓库区餐馆招全天或半天工跑堂，备居留，需简单语言.
+全天 工作时间周天至周五9：00-19：00，周六休息，全保.
+半天 工作时间周一到周五13：00-19：00，周六休息，周天9：00-19：00，半保.
+有想法的小伙伴可电话咨询！！</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>无名氏&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-688026104&nbsp;&nbsp;<span class="t-b">IP:62.174.172.79</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info4.style.display=='block')info4.style.display ='none';else info4.style.display='block'" class="infblue" href="###">招中餐大厨</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184152" target="_blank">查看</a></p>
+</div>
+
+<div id="info4" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>招中餐大厨</b></font><br />
+招中餐大厨一名，巴塞罗那郊区，单人住家</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>我&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-688185105&nbsp;&nbsp;<span class="t-b">IP:181.41.128.129</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info5.style.display=='block')info5.style.display ='none';else info5.style.display='block'" class="infblue" href="###">电商仓库招文员财务和仓库理货打包</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184151" target="_blank">查看</a></p>
+</div>
+
+<div id="info5" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>电商仓库招文员财务和仓库理货打包</b></font><br />
+仓库在郊区Cardedeu，打折村旁边。
+1.需要文员会财务会语言备居留，工资面议，九点半到五点半，每周40小时工作，保险也是40小时。红日和周六休息。需要高中以上学历。
+2.打包仓库工要求45岁以下有仓库经验优先。全天工和周末日结都需要。全天工要求备居留，保险也是40小时。
+
+包午餐不包住，交通自行解决。</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>老板&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-658122333&nbsp;&nbsp;<span class="t-b">IP:92.172.145.120</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info6.style.display=='block')info6.style.display ='none';else info6.style.display='block'" class="infblue" href="###">巴塞凯旋门地铁口寿司点单店招聘寿司</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184142" target="_blank">查看</a></p>
+</div>
+
+<div id="info6" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞凯旋门地铁口寿司点单店招聘寿司师傅</b></font><br />
+巴塞凯旋门地铁口寿司点单店招聘寿司师傅 工资2300，工作简单轻松上手快 同事年轻好相处 包吃不包住 需备拘留 详细问题联系电话695928472.</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>老板&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-695928472&nbsp;&nbsp;<span class="t-b">IP:79.155.67.188</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info7.style.display=='block')info7.style.display ='none';else info7.style.display='block'" class="infblue" href="###">市中心招厨房</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184140" target="_blank">查看</a></p>
+</div>
+
+<div id="info7" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>市中心招厨房</b></font><br />
+市中心四路地铁alfonsx招熟练厨房备居留，工作时间9:00-19；00 会做tapa,面包 包吃不包住</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>慧&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-615408137&nbsp;&nbsp;<span class="t-b">IP:90.167.202.153</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info8.style.display=='block')info8.style.display ='none';else info8.style.display='block'" class="infblue" href="###">美甲大工，中工</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184135" target="_blank">查看</a></p>
+</div>
+
+<div id="info8" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>美甲大工，中工</b></font><br />
+巴塞市中心凯旋门附近美甲店招工大工中工保底加提成电话656407108</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>啊芬&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-656407108&nbsp;&nbsp;<span class="t-b">IP:188.26.214.217</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info9.style.display=='block')info9.style.display ='none';else info9.style.display='block'" class="infblue" href="###">巴塞市中心专业美甲连锁店招收美甲学</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184133" target="_blank">查看</a></p>
+</div>
+
+<div id="info9" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞市中心专业美甲连锁店招收美甲学徒2名，备居留</b></font><br />
+巴塞罗那市中心专业美甲连锁店招收美甲学徒2名，备居留，无按摩业务，只做女性顾客生意，接受系统专业培训，学徒第一个月工资800欧。</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>陈&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-691153765&nbsp;&nbsp;<span class="t-b">IP:85.87.0.7</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info10.style.display=='block')info10.style.display ='none';else info10.style.display='block'" class="infblue" href="###">需一名炒饭面师傅</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184131" target="_blank">查看</a></p>
+</div>
+
+<div id="info10" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>需一名炒饭面师傅</b></font><br />
+巴萨近郊酒吧带餐需一名炒饭面师傅， 工作时间11:30，中午16:30下班之前开个饭菜，19:30–00:00
+备居留， 包吃住</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>.&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-634064971&nbsp;&nbsp;<span class="t-b">IP:79.155.166.25</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info11.style.display=='block')info11.style.display ='none';else info11.style.display='block'" class="infblue" href="###">招聘熟练寿司师傅 点餐店 巴塞近郊</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184130" target="_blank">查看</a></p>
+</div>
+
+<div id="info11" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>招聘熟练寿司师傅 点餐店 巴塞近郊</b></font><br />
+巴塞近郊，找熟练寿司师傅，ZONA 1，离巴塞15分钟车程，点餐寿司小餐馆，工作轻松，下班准时，包吃住，单人房，住家近 ！</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>黄&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-646799111&nbsp;&nbsp;<span class="t-b">IP:79.155.164.167</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info12.style.display=='block')info12.style.display ='none';else info12.style.display='block'" class="infblue" href="###">招打杂工人</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184128" target="_blank">查看</a></p>
+</div>
+
+<div id="info12" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>招打杂工人</b></font><br />
+巴塞罗那L5 hospital clínico 附近酒吧招一名打杂工人，时间是下午1：30到7：30,要求备居留</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>Lw&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-675860714&nbsp;&nbsp;<span class="t-b">IP:87.125.33.124</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info13.style.display=='block')info13.style.display ='none';else info13.style.display='block'" class="infblue" href="###">巴塞罗那市中心美甲店招工</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184127" target="_blank">查看</a></p>
+</div>
+
+<div id="info13" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞罗那市中心美甲店招工</b></font><br />
+巴塞市中心美甲店招手脚护理，中工、大工备居留</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>郭&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-672821717&nbsp;&nbsp;<span class="t-b">IP:67.218.248.32</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info14.style.display=='block')info14.style.display ='none';else info14.style.display='block'" class="infblue" href="###">巴塞罗那酒吧招跑堂</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184126" target="_blank">查看</a></p>
+</div>
+
+<div id="info14" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞罗那酒吧招跑堂</b></font><br />
+巴塞罗那COLLBLANC酒吧招跑堂，待遇优，备居留，包吃不包住，带薪度假</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>J&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-673823527&nbsp;&nbsp;<span class="t-b">IP:176.84.241.185</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info15.style.display=='block')info15.style.display ='none';else info15.style.display='block'" class="infblue" href="###">badalona招美甲大工</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184122" target="_blank">查看</a></p>
+</div>
+
+<div id="info15" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>badalona招美甲大工</b></font><br />
+badalona美甲店招大工，中工，要求会语言，做工精细，待遇优，周日红日休息，生意常年稳定，底薪+提成618238431 微信同步</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>阿&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-618238431&nbsp;&nbsp;<span class="t-b">IP:83.51.132.187</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info16.style.display=='block')info16.style.display ='none';else info16.style.display='block'" class="infblue" href="###">日餐自助 招 跑堂 和 周末跑堂</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184121" target="_blank">查看</a></p>
+</div>
+
+<div id="info16" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>日餐自助 招 跑堂 和 周末跑堂</b></font><br />
+日餐自助 招聘 男跑堂 和 周末跑堂 备拘留 包吃住 近5路地铁Cornellà 联系电话687132311</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>老板&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-687132311&nbsp;&nbsp;<span class="t-b">IP:139.47.120.239</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info17.style.display=='block')info17.style.display ='none';else info17.style.display='block'" class="infblue" href="###">巴塞近郊 点餐店, 找熟练寿司师傅</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184117" target="_blank">查看</a></p>
+</div>
+
+<div id="info17" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞近郊 点餐店, 找熟练寿司师傅，包吃住</b></font><br />
+巴塞近郊，需熟练寿司师傅，ZONA 1，离巴塞15分钟车程，点餐寿司小餐馆，工作轻松，下班准时，包吃住，需熟练的寿司师傅 ！</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>黄&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-646799111&nbsp;&nbsp;<span class="t-b">IP:79.155.164.167</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info18.style.display=='block')info18.style.display ='none';else info18.style.display='block'" class="infblue" href="###">预约各地警察局cita/办居留</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184103" target="_blank">查看</a></p>
+</div>
+
+<div id="info18" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>预约各地警察局cita/办居留</b></font><br />
+联系微信：escita 预约办理全西警察局各类cita：按指纹、回乡证、取居留卡、邀请函、办NIE号等！办非盈利、数字游民、家庭团聚、欧盟居留、居留更新、电子证书! 国内办理西班牙探亲、旅游签！</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>陈先生&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034650000000&nbsp;&nbsp;<span class="t-b">IP:208.85.23.81</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info19.style.display=='block')info19.style.display ='none';else info19.style.display='block'" class="infblue" href="###">餐馆需熟练女跑堂</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184102" target="_blank">查看</a></p>
+</div>
+
+<div id="info19" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>餐馆需熟练女跑堂</b></font><br />
+巴塞罗那近郊日本餐需熟练跑堂，包吃住，备居留，有单间，工作轻松，分工明确，周一统一休息，有兴趣电话详谈</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>Liu&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-653375758&nbsp;&nbsp;<span class="t-b">IP:83.50.191.29</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info20.style.display=='block')info20.style.display ='none';else info20.style.display='block'" class="infblue" href="###">预约各地警察局cita/办居留</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184099" target="_blank">查看</a></p>
+</div>
+
+<div id="info20" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>预约各地警察局cita/办居留</b></font><br />
+联系微信：escita 预约办理全西警察局各类cita：按指纹、回乡证、取居留卡、邀请函、办NIE号等！办非盈利、数字游民、家庭团聚、欧盟居留、居留更新、电子证书! 国内办理西班牙探亲、旅游签！</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>陈先生&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034650000000&nbsp;&nbsp;<span class="t-b">IP:208.85.23.81</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info21.style.display=='block')info21.style.display ='none';else info21.style.display='block'" class="infblue" href="###">需大厨一名，有责任心包吃住 工资优</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184084" target="_blank">查看</a></p>
+</div>
+
+<div id="info21" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>需大厨一名，有责任心包吃住 工资优</b></font><br />
+需大厨一名，有责任心，包吃住</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>我&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-634064971&nbsp;&nbsp;<span class="t-b">IP:79.155.166.25</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info22.style.display=='block')info22.style.display ='none';else info22.style.display='block'" class="infblue" href="###">需熟练跑堂</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184079" target="_blank">查看</a></p>
+</div>
+
+<div id="info22" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>需熟练跑堂</b></font><br />
+巴萨凯旋门附近需熟练跑堂，工资待遇面议</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>陈&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-655644025&nbsp;&nbsp;<span class="t-b">IP:79.154.24.232</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info23.style.display=='block')info23.style.display ='none';else info23.style.display='block'" class="infblue" href="###">住家保姆</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184075" target="_blank">查看</a></p>
+</div>
+
+<div id="info23" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>住家保姆</b></font><br />
+本人女 56岁，浙江籍，找住家保姆工作。</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>陈&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-607494031&nbsp;&nbsp;<span class="t-b">IP:79.117.245.92</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info24.style.display=='block')info24.style.display ='none';else info24.style.display='block'" class="infblue" href="###">小心骗子，这个骗子全国各地发布广告</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184074" target="_blank">查看</a></p>
+</div>
+
+<div id="info24" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>小心骗子，这个骗子全国各地发布广告，</b></font><br />
+骗子广告，内容：在西班牙全国各地发布骗人的广告，餐厅、照顾老人等，你是不是太缺德了吧，希望大家小心不要上当受骗。</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>675 536 218&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-675536,675536218&nbsp;&nbsp;<span class="t-b">IP:139.47.42.18</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info25.style.display=='block')info25.style.display ='none';else info25.style.display='block'" class="infblue" href="###">sant adria 百元店招工</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184069" target="_blank">查看</a></p>
+</div>
+
+<div id="info25" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>sant adria 百元店招工</b></font><br />
+Sant adria 百元店招工  男女不限  中午包一顿  不包住  备居留  有经验  年轻人优先</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>林&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-615772703,691206570&nbsp;&nbsp;<span class="t-b">IP:79.152.234.39</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info26.style.display=='block')info26.style.display ='none';else info26.style.display='block'" class="infblue" href="###">酒吧</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184068" target="_blank">查看</a></p>
+</div>
+
+<div id="info26" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>酒吧</b></font><br />
+badalona酒吧招熟练厨房</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>吴&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-622558279&nbsp;&nbsp;<span class="t-b">IP:80.103.18.88</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info27.style.display=='block')info27.style.display ='none';else info27.style.display='block'" class="infblue" href="###">Badalona美甲店</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184066" target="_blank">查看</a></p>
+</div>
+
+<div id="info27" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>Badalona美甲店</b></font><br />
+badalona美甲店招大工，中工，要求会语言，做工精细，待遇优，周日红日休息，生意常年稳定618238431 微信同步</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>好&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-618238431&nbsp;&nbsp;<span class="t-b">IP:83.51.132.187</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info28.style.display=='block')info28.style.display ='none';else info28.style.display='block'" class="infblue" href="###">求职</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184064" target="_blank">查看</a></p>
+</div>
+
+<div id="info28" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>求职</b></font><br />
+山东人，男，39岁，除了翻滚不怎么熟悉，其余都可以，勤劳肯干，不贵的可以学习，想找一个厨房的活管吃住</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>董&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-637159225&nbsp;&nbsp;<span class="t-b">IP:31.4.228.157</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info29.style.display=='block')info29.style.display ='none';else info29.style.display='block'" class="infblue" href="###">2路地铁招文员</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184057" target="_blank">查看</a></p>
+</div>
+
+<div id="info29" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>2路地铁招文员</b></font><br />
+L2地铁附近办公室招聘文员，主要负责登记发票，产品表格入电脑等，工作轻松，周末双休，办公室氛围好，同事好相处，满一年有带薪度假。要求会基本西班牙语。</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>小梁&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-644465567&nbsp;&nbsp;<span class="t-b">IP:188.26.221.241</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info30.style.display=='block')info30.style.display ='none';else info30.style.display='block'" class="infblue" href="###">招美甲师</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184053" target="_blank">查看</a></p>
+</div>
+
+<div id="info30" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>招美甲师</b></font><br />
+巴塞市中心美甲店 招长期 熟练美甲大工（会做熟练光疗）中工 、保险全保 ，保底+提成 ，联系电话623154092</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>*&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-623154092&nbsp;&nbsp;<span class="t-b">IP:79.117.64.134</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info31.style.display=='block')info31.style.display ='none';else info31.style.display='block'" class="infblue" href="###">巴塞糖果店需要长期工人</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184052" target="_blank">查看</a></p>
+</div>
+
+<div id="info31" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞糖果店需要长期工人</b></font><br />
+巴塞糖果店需要长期工人，全天或半天也可做周末，工作时间可商量，工作简单，联系电话：613872355</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>老板&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-613872355&nbsp;&nbsp;<span class="t-b">IP:151.115.98.7</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info32.style.display=='block')info32.style.display ='none';else info32.style.display='block'" class="infblue" href="###">巴塞市中心旅游区招聘美甲工</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184051" target="_blank">查看</a></p>
+</div>
+
+<div id="info32" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞市中心旅游区招聘美甲工</b></font><br />
+招聘 巴塞市中心旅游区美甲店，招长期美甲大工，中工，暑假工，周末工，小费高，同事好相处，保底加提成，保险全保，备居留</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>月&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-688055983&nbsp;&nbsp;<span class="t-b">IP:79.117.98.213</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info33.style.display=='block')info33.style.display ='none';else info33.style.display='block'" class="infblue" href="###">巴赛近郊高薪招熟练大厨</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184050" target="_blank">查看</a></p>
+</div>
+
+<div id="info33" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴赛近郊高薪招熟练大厨</b></font><br />
+巴赛近郊高薪招熟练大厨,备居留</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>朱&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-662909394&nbsp;&nbsp;<span class="t-b">IP:31.4.207.14</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info34.style.display=='block')info34.style.display ='none';else info34.style.display='block'" class="infblue" href="###">巴塞罗那市中心招聘女按摩师</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184040" target="_blank">查看</a></p>
+</div>
+
+<div id="info34" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞罗那市中心招聘女按摩师</b></font><br />
+巴塞罗那市中心招聘女按摩师，环境好，客人素质高，同事好相处！
+联系电话: 666353284
+</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>Moni&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-666353284,666353284&nbsp;&nbsp;<span class="t-b">IP:88.28.28.149</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info35.style.display=='block')info35.style.display ='none';else info35.style.display='block'" class="infblue" href="###">餐馆招半天跑堂</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184034" target="_blank">查看</a></p>
+</div>
+
+<div id="info35" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>餐馆招半天跑堂</b></font><br />
+市中心餐馆需要熟练的晚上半天跑堂</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>我&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-657037482&nbsp;&nbsp;<span class="t-b">IP:90.68.153.12</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info36.style.display=='block')info36.style.display ='none';else info36.style.display='block'" class="infblue" href="###">巴塞罗那家庭急招照顾老人住家阿姨，</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184030" target="_blank">查看</a></p>
+</div>
+
+<div id="info36" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞罗那家庭急招照顾老人住家阿姨，照顾陪伴老人遛弯，需要</b></font><br />
+巴塞罗那家庭急招照顾老人住家阿姨，照顾陪伴老人遛弯，需要有爱心、耐心的阿姨，包吃住，休息时间灵活</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>我&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-675536218&nbsp;&nbsp;<span class="t-b">IP:185.188.61.41</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info37.style.display=='block')info37.style.display ='none';else info37.style.display='block'" class="infblue" href="###">巴塞招办公室助理</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184029" target="_blank">查看</a></p>
+</div>
+
+<div id="info37" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞招办公室助理</b></font><br />
+巴塞招办公室助理，工作内容主要包括发票整理、产品数据录入，操作简单，容易上手。工作环境舒适，团队友好，周末双休，做满一年享带薪假期，语言不好也没有关系，联系电话：634135465</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>主管&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-634135465&nbsp;&nbsp;<span class="t-b">IP:207.244.71.80</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info38.style.display=='block')info38.style.display ='none';else info38.style.display='block'" class="infblue" href="###">巴塞市中心衣服修补店需要全天熟练车</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184028" target="_blank">查看</a></p>
+</div>
+
+<div id="info38" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>巴塞市中心衣服修补店需要全天熟练车工</b></font><br />
+巴塞市中心衣服修补店需要全天熟练车工。会使用双针机，翘边机。无需语言。包中午饭。待遇优1800起。礼拜天休息。需备居留。</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>lee&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-625321817&nbsp;&nbsp;<span class="t-b">IP:188.26.214.201</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info39.style.display=='block')info39.style.display ='none';else info39.style.display='block'" class="infblue" href="###">招客服/业务员</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184027" target="_blank">查看</a></p>
+</div>
+
+<div id="info39" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>招客服/业务员</b></font><br />
+巴塞罗那诚招： 1. 客服 数名 （熟悉电脑操作） 2 全职/兼职 业务推销员数名 全保 周末双休 带薪度假 有经验优先 有兴趣请添加微信：620308110</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>chen&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-620308110&nbsp;&nbsp;<span class="t-b">IP:195.77.143.154</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+
+
+
+
+<div class="inflist5_list ">
+<div class="inflist_color_4">
+<p class="i0 infred"><img src="images2015/jiansd.png"  /> </p>
+<p class="i1 "><a onClick="if(info40.style.display=='block')info40.style.display ='none';else info40.style.display='block'" class="infblue" href="###">市中心百元店招聘</a></p>
+<p class="i2 infgray">2025/7/24</p>
+<p class="i3 infbrack">BARCELONA</p>
+<p class="i0 "><a class="inf_a" href="showinfo.asp?id=4184023" target="_blank">查看</a></p>
+</div>
+
+<div id="info40" class="list2">
+	     <div class="con"><p><font color=#0066CC><b>市中心百元店招聘</b></font><br />
+巴萨市中心精品百元店招数名，备居留懂理货有工作经验，工资待遇优..电话642 533 898微信JIANXIAO520000</p></div>
+		 <div class="info"><span class="t-b">联系人：</span>郑&nbsp;&nbsp;<span class="t-b">联系电话</span>：
+		 0034-6425338&nbsp;&nbsp;<span class="t-b">IP:176.83.120.63</span></div>
+	   </div>
+	  
+</div>
+
+
+
+
+</div>
+
+
+<script language="javascript">
+function ShowPage(TotalPage,PageIndex,url){
+
+PageIndex1=PageIndex-1
+if (PageIndex1==0) PageIndex1=1
+PageIndex2=PageIndex+1
+if (PageIndex2==TotalPage+1) PageIndex2=PageIndex
+document.write("<a href='?Page="+PageIndex1+"&"+url+"' class='pageup'>< 上一页</a>&nbsp;&nbsp;");	
+
+if (PageIndex<4){PageLong=7-PageIndex;}
+else
+if (TotalPage-PageIndex<4){PageLong=6-(TotalPage-PageIndex)}
+else{PageLong=3;}
+for (var i=1; i <= TotalPage; i++) {
+if (i < PageIndex+PageLong && i > PageIndex-PageLong || i==1 || i==TotalPage){
+if (PageIndex==i){document.write("<a id=page_hover>"+ i +"</a>&nbsp;");}else{document.write("<a  href=?Page="+i+"&"+url+">"+ i +"</a>&nbsp;");}
+}
+}
+document.write("<a href='?Page="+PageIndex2+"&"+url+"' class='pagedown'>下一页 ></a>&nbsp;&nbsp;");	
+}
+</script>
+<form name="form2" method="post" action="?dhid=1&keyword=&class1=13&class2=0&dq=12&t=&sj=">
+<div class="page"><script>ShowPage(43,3,"class1=13&class2=0&dq=12")</script>
+
+
+<div class="page_text">  到
+ 
+   
+      <input  style="width:20px" name="page" type="text" size="3" maxlength="3" value="4" />
+   
+
+  页   
+</div><input class="page_botton" name="" type="submit" value="确定" /></div>
+</form>
+
+
+
+
+<table width="740" border="0" cellspacing="5" cellpadding="0">
+  <tr>
+    <td><a href="ad/ershou.html" target="_blank"><img src="ad/sort1.gif" width="370" height="100" border="0"></a></td>
+    <td><a href="ad/2022/sweweb1.jpg" target="_blank"><img src="ad/2022/swe.jpg" width="370" height="100" border="0"></a></td>
+  </tr>
+</table>
+
+
+
+</div>
+
+<div class="contact">
+<h1>发布信息联系方式</h1>
+<div class="contact_text">
+<h3>华新报</h3>
+<p>热线：661177777</p>
+</div>
+<div class="contact_text">
+<h3>中国报</h3>
+<p>热线：661177777</p>
+</div>
+<div class="contact_text">
+<h3>华文传媒集团广告部</h3>
+<p>热线：661177777</p>
+
+</div>
+<div class="mainad">
+
+
+<div style="padding:2px 0 2px 5px"><a href="ad/2022/tokerweb2.png" target="_blank"><img src="ad/2022/toker11.jpg" width="218" height="375" border="0"></a></div>
+
+<!--
+<div style="padding:2px 0 2px 5px"><a href="https://xiyafc.com/" target="_blank"><img src="ad/2021/cyfc23.png" width="218" height="120" border="0"></a></div>
+
+
+
+<div style="padding:2px 0 2px 0"><a href="ad/ykxy.html" target="_blank"><img src="ad/.gif" width="218" height="120" border="0"></a></div>
+<div style="padding:2px 0 2px 0"><a href="ad/clinica.html" target="_blank"><img src="ad/left7.gif" width="145" height="100" border="0"></a></div>
+
+-->
+
+</div>
+</div>
+<div class="bottom">
+<div class="bottom_link">
+
+<div class="cl"></div>
+</div>
+
+<div class="bottom_bottom">
+<div class="weixing fl"></div>
+<div class="bottom_text fr">
+<span class="bottombig">About EulamNew - <a href="#">公司简介</a> - <a href="#">网友投稿</a> - <a href="#">网络营销</a> - <a href="#">帮助中心</a></span><br />
+<span class="gray">西班牙华文传媒集团版权所有 @2006-2015 <br />
+欧洲网热线：0034-915217156</span>
+
+<span class="gray">&nbsp;&nbsp;&nbsp;<a href="http://beian.miit.gov.cn/" target="_blank">闽ICP备2020019251号</a></span>
+<br /><DIV style="DISPLAY: none">
+
+</DIV>
+</div>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

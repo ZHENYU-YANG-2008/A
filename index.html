@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>华信西班牙信息平台</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding-top: 20px; background-color: #f4f4f4; }
+    .banner { background-color: #ffd966; padding: 10px; text-align: center; font-size: 18px; font-weight: bold; }
+    .info-title { cursor: pointer; transition: color 0.3s ease; display: flex; align-items: center; }
+    .info-title:hover { color: red; }
+    .content-box { display: none; background: #fff; padding: 10px; border-radius: 6px; }
+    .section-title { font-weight: bold; margin-top: 30px; font-size: 20px; background-color: #e9ecef; padding: 10px; }
+    .info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #fff; border-bottom: 1px solid #ccc; }
+    .info-row:hover { background-color: #f0f0f0; }
+    .info-main { display: flex; flex: 1; align-items: center; gap: 10px; }
+    .title-text { min-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .info-date { width: 120px; text-align: center; }
+    .info-city { width: 150px; text-align: center; }
+    .view-btn { color: #007bff; cursor: pointer; text-decoration: underline; margin-left: 10px; }
+    .view-btn:hover { color: #0056b3; }
+    .ad-box-row { display: flex; gap: 10px; margin-bottom: 20px; }
+    .ad-box-small { flex: 1; height: 100px; background-color: #ccc; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+    #tool-row { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+    #search-area { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    #action-area { display: flex; flex-direction: column; gap: 5px; }
+    .dropdown-toggle::after { margin-left: 5px; }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部广告 -->
+  <div class="banner">📢 广告位招租，联系：admin@infohuaxin.com</div>
+
+  <!-- 工具栏 -->
+  <div class="container my-3">
+    <div id="tool-row">
+      <div id="search-area">
+        <input type="text" id="searchInput" class="form-control" placeholder="搜索关键词">
+        <select id="regionSelect" class="form-select">
+          <option value="">选择地区 ▼</option>
+          <option>ALBACETE</option><option>ALICANTE</option><option>ALMERIA</option><option>AVILA</option><option>BADAJOZ</option>
+          <option>BARCELONA</option><option>BILBAO</option><option>BURGOS</option><option>CADIZ</option><option>CASTELLON</option>
+          <option>CEUTA</option><option>CIUDAD REAL</option><option>CORDOBA</option><option>CUENCA</option><option>GIRONA</option>
+          <option>GRANADA</option><option>GUADALAJARA</option><option>HUELVA</option><option>HUESCA</option><option>JAEN</option>
+          <option>LA CORUÑA</option><option>LA RIOJA</option><option>LAS PALMAS</option><option>LEON</option><option>LLEIDA</option>
+          <option>LUGO</option><option>MADRID</option><option>MALAGA</option><option>MELILLA</option><option>MURCIA</option>
+          <option>OURENSE</option><option>PALENCIA</option><option>PONTEVEDRA</option><option>SALAMANCA</option><option>SANTA CRUZ DE TENERIFE</option>
+          <option>SANTANDER</option><option>SEGOVIA</option><option>SEVILLA</option><option>SORIA</option><option>TARRAGONA</option>
+          <option>TERUEL</option><option>TOLEDO</option><option>VALENCIA</option><option>VALLADOLID</option><option>VITORIA</option>
+          <option>ZAMORA</option><option>ZARAGOZA</option>
+          <option disabled>──────────</option>
+          <option>南部</option><option>北部</option><option>海岛</option>
+        </select>
+        <button class="btn btn-secondary btn-sm" onclick="loadPosts()">搜索</button>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 10px;">
+        <div id="action-area">
+          <button class="btn btn-outline-secondary" onclick="alert('注册功能开发中')">🧾 注册账号</button>
+          <button class="btn btn-outline-primary" onclick="togglePostForm()">📢 免费发布 ▼</button>
+        </div>
+        <button class="btn btn-outline-success" style="height:72px;" onclick="alert('会员功能开发中')">💎 会员发布</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 广告位占位 -->
+  <div class="container">
+    <div class="ad-box-row">
+      <div class="ad-box-small">🖼 广告位左侧</div>
+      <div class="ad-box-small">🖼 广告位右侧</div>
+    </div>
+  </div>
+
+  <!-- 发布表单 -->
+  <div class="container mb-4" id="postForm" style="display: none;">
+    <div class="card">
+      <div class="card-header">发布信息（测试模式）</div>
+      <div class="card-body">
+        <form id="form">
+          <div class="row g-3">
+            <div class="col-md-4"><input type="text" class="form-control" id="name" placeholder="姓名" required></div>
+            <div class="col-md-4"><input type="text" class="form-control" id="phone" placeholder="电话" required></div>
+            <div class="col-md-4">
+              <select id="city" class="form-select" required>
+                <option value="">请选择城市</option>
+                <option>ALBACETE</option><option>ALICANTE</option><option>ALMERIA</option><option>AVILA</option><option>BADAJOZ</option>
+                <option>BARCELONA</option><option>BILBAO</option><option>BURGOS</option><option>CADIZ</option><option>CASTELLON</option>
+                <option>CEUTA</option><option>CIUDAD REAL</option><option>CORDOBA</option><option>CUENCA</option><option>GIRONA</option>
+                <option>GRANADA</option><option>GUADALAJARA</option><option>HUELVA</option><option>HUESCA</option><option>JAEN</option>
+                <option>LA CORUÑA</option><option>LA RIOJA</option><option>LAS PALMAS</option><option>LEON</option><option>LLEIDA</option>
+                <option>LUGO</option><option>MADRID</option><option>MALAGA</option><option>MELILLA</option><option>MURCIA</option>
+                <option>OURENSE</option><option>PALENCIA</option><option>PONTEVEDRA</option><option>SALAMANCA</option><option>SANTA CRUZ DE TENERIFE</option>
+                <option>SANTANDER</option><option>SEGOVIA</option><option>SEVILLA</option><option>SORIA</option><option>TARRAGONA</option>
+                <option>TERUEL</option><option>TOLEDO</option><option>VALENCIA</option><option>VALLADOLID</option><option>VITORIA</option>
+                <option>ZAMORA</option><option>ZARAGOZA</option>
+                <option disabled>──────────</option>
+                <option>南部</option><option>北部</option><option>海岛</option>
+              </select>
+            </div>
+            <div class="col-md-6"><input type="text" class="form-control" id="title" placeholder="标题" required></div>
+            <div class="col-md-6"><textarea class="form-control" id="content" rows="2" placeholder="请输入详细内容" required></textarea></div>
+          </div>
+          <div class="mt-3 text-end">
+            <button type="submit" class="btn btn-primary">立即发布</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 信息列表 -->
+  <div class="container">
+    <div class="section-title">🏃 招聘 / 求职信息区</div>
+    <div id="infoList"></div>
+    <div style="height: 100px;"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("form");
+    const infoList = document.getElementById("infoList");
+    const searchInput = document.getElementById("searchInput");
+    const regionSelect = document.getElementById("regionSelect");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const data = {
+        title: document.getElementById("title").value,
+        content: document.getElementById("content").value,
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        city: document.getElementById("city").value,
+        date: new Date().toISOString().split("T")[0]
+      };
+      const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+      posts.unshift(data);
+      localStorage.setItem("posts", JSON.stringify(posts));
+      form.reset();
+      loadPosts();
+    });
+
+    function loadPosts() {
+      const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+      const keyword = searchInput.value.toLowerCase();
+      const region = regionSelect.value;
+      infoList.innerHTML = "";
+      posts.forEach((post, i) => {
+        if (region && post.city !== region) return;
+        if (keyword && !post.title.toLowerCase().includes(keyword) && !post.content.toLowerCase().includes(keyword)) return;
+        const row = document.createElement("div");
+        row.className = "info-row";
+        row.innerHTML = `
+          <div class="info-main">
+            <span>▶</span>
+            <span class="title-text info-title" onclick="toggleContent(${i})">${post.title}</span>
+          </div>
+          <span class="info-date">${post.date}</span>
+          <span class="info-city">${post.city}</span>
+          <span class="view-btn" onclick="toggleContent(${i})">查看</span>
+        `;
+
+        const contentBox = document.createElement("div");
+        contentBox.className = "content-box";
+        contentBox.id = `content-${i}`;
+        contentBox.innerHTML = `
+          <p>${post.content}</p>
+          <hr><small>👤 ${post.name} | 📞 ${post.phone}</small>
+        `;
+
+        infoList.appendChild(row);
+        infoList.appendChild(contentBox);
+      });
+    }
+
+    function toggleContent(index) {
+      const box = document.getElementById(`content-${index}`);
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    function togglePostForm() {
+      const form = document.getElementById("postForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    searchInput.addEventListener("input", loadPosts);
+    regionSelect.addEventListener("change", loadPosts);
+
+    loadPosts();
+  </script>
+
+</body>
+</html>
